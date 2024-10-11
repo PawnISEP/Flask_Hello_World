@@ -13,10 +13,26 @@ def MaPremiereAPI():
 def carre(val_user):
     return "<h2>Le carré de votre valeur est : </h2>" + str(val_user * val_user)
 
-@app.route('/somme/<int:valeur1>/<int:valeur2>')
-def somme(valeur1, valeur2):
-    parite = "pair" if (valeur1 + valeur2) % 2 == 0 else "impair"
-    return f"<h2>La somme de vos valeurs correspond à : {valeur1 + valeur2}</h2><p>C'est un nombre {parite}.</p>"
+@app.route('/somme/<path:valeurs>')
+def somme(valeurs):
+    valeurs_list = list(map(int, valeurs.split('/')))
+    total = 0
+
+    total = total + valeurs
+  
+    parite = "pair" if (total) % 2 == 0 else "impair"
+    return f"<h2>La somme de vos valeurs correspond à : {total}</h2><p>C'est un nombre {parite}.</p>"
+
+@app.route('/max/<path:valeurs>')
+def max_value(valeurs):
+    valeurs_list = list(map(int, valeurs.split('/')))
+    valeur_max = valeurs_list[0]
+    
+    for valeur in valeurs_list:
+        if valeur > valeur_max:
+            valeur_max = valeur
+    return f"<h2>La valeur la plus importante parmi {valeurs_list} est : {valeur_max}</h2>"
+
                                                                                                                                        
 @app.route('/')
 def hello_world():
