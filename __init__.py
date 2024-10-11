@@ -18,7 +18,8 @@ def somme(valeurs):
     valeurs_list = list(map(int, valeurs.split('/')))
     total = 0
 
-    total = total + valeurs
+    for i in valeurs_list:
+      total = total + i
   
     parite = "pair" if (total) % 2 == 0 else "impair"
     return f"<h2>La somme de vos valeurs correspond à : {total}</h2><p>C'est un nombre {parite}.</p>"
